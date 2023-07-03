@@ -35,22 +35,20 @@ const MyDropzone: React.FC = () => {
   });
 
   return (
-    <section className="container">
+    <section>
       <div {...getRootProps()}>
         <input {...getInputProps()} />
         <p>Drag 'n' drop some files here, or click to select files</p>
       </div>
-      <main>
+      <div>
         {image && (
-          <div>
-            <img
-              src={image.preview}
-              alt="preview"
-              className="object-cover w-full h-64"
-            />
-          </div>
+          <div
+            className={` h-screen bg-repeat rounded-lg bg-top-left  bg-[length:${`100px`}] `}
+            //add options like bg-repeat-y bg-repeat-x bg-cover bg-center
+            style={{ backgroundImage: `url(${image.preview})` }}
+          />
         )}
-      </main>
+      </div>
     </section>
   );
 };
