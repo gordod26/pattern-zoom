@@ -5,7 +5,11 @@ interface IFileWithPreview extends File {
   preview?: string;
 }
 
-const MyDropzone: React.FC = () => {
+interface Props {
+  zoom: number;
+}
+
+const MyDropzone = ({ zoom }: Props) => {
   const [image, setImage] = useState<IFileWithPreview | null>(null);
   const onDrop = useCallback((acceptedFiles: File[]) => {
     if (acceptedFiles.length) {
@@ -43,9 +47,12 @@ const MyDropzone: React.FC = () => {
       <div>
         {image && (
           <div
-            className={` h-screen bg-repeat rounded-lg bg-top-left  bg-[length:${`100px`}] `}
+            className={` h-screen bg-repeat rounded-lg bg-top-left`}
             //add options like bg-repeat-y bg-repeat-x bg-cover bg-center
-            style={{ backgroundImage: `url(${image.preview})` }}
+            style={{
+              backgroundImage: `url(${image.preview})`,
+              backgroundSize: `${zoom}px`,
+            }}
           />
         )}
       </div>

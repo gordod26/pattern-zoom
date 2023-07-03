@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-type Props = {};
+type Props = {
+  handleZoom: (zoom: number) => void;
+  zoom: number;
+};
 
-const Range = (props: Props) => {
-  const [zoom, setZoom] = useState(1);
+const Range = ({zoom, handleZoom}: Props) => {
 
     useEffect(() => {
         console.log(zoom);
@@ -20,10 +22,10 @@ const Range = (props: Props) => {
       <input
         id="medium-range"
         type="range"
-        min={1}
-        max={100}
+        min={10}
+        max={1000}
         value={zoom}
-        onChange={(e) => setZoom(Number(e.target.value))}
+        onChange={(e) => handleZoom(Number(e.target.value))}
         className="w-full h-2 mb-6 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
       />
     </div>
